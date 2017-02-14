@@ -14,8 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(
+      _ application: UIApplication,
+      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    let rootVC = window!.rootViewController as! ContactListViewController
+    let presenter = ContactListPresenterImp(view: rootVC)
+    let interactor = ContactInteractorImp(upstream: presenter)
+    let fetcher = ContactsFetcherImp()
+    interactor.fetcher = fetcher
+    presenter.contactInteractor = interactor
+    rootVC.presenter = presenter
     return true
   }
 
