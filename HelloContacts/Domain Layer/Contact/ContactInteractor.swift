@@ -14,10 +14,6 @@ protocol ContactInteractorUpstream: class {
   func contactsLoaded(_ contacts: [Contact]?)
 }
 
-protocol ContactsFetcher {
-  func fetchContactsAsync(completion: @escaping ([Contact]?) -> Void)
-}
-
 class ContactInteractorImp: ContactInteractor {
   unowned let upstream: ContactInteractorUpstream
   var fetcher: ContactsFetcher!

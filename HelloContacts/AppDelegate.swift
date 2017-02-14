@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     let rootVC = window!.rootViewController as! ContactListViewController
-    let presenter = ContactListPresenterImp(view: rootVC)
+    let presenter = ContactListPresenter(upstream: rootVC)
     let interactor = ContactInteractorImp(upstream: presenter)
     let fetcher = ContactsFetcherImp()
     interactor.fetcher = fetcher
     presenter.contactInteractor = interactor
-    rootVC.presenter = presenter
+    rootVC.eventHandler = presenter
     return true
   }
 

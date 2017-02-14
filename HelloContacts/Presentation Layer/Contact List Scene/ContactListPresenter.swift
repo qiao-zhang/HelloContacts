@@ -5,16 +5,17 @@
 
 import Foundation
 
-protocol ContactListPresenter {
-  func viewLoaded()
+protocol ContactListPresenterView: class {
+  
 }
 
-class ContactListPresenterImp: ContactListPresenter, ContactInteractorUpstream {
+class ContactListPresenter: ContactListViewControllerEventHandler,
+    ContactInteractorUpstream {
   var contactInteractor: ContactInteractor!
-  unowned let view: ContactListView
+  unowned let upstream: ContactListPresenterView
 
-  init(view: ContactListView) {
-    self.view = view
+  init(upstream: ContactListPresenterView) {
+    self.upstream = upstream
   }
 
   func viewLoaded() {

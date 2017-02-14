@@ -6,6 +6,10 @@
 import Foundation
 import Contacts
 
+protocol ContactsFetcher {
+  func fetchContactsAsync(completion: @escaping ([Contact]?) -> Void)
+}
+
 class ContactsFetcherImp: ContactsFetcher {
   
   func fetchContactsAsync(completion: @escaping ([Contact]?) -> Void) {

@@ -8,16 +8,18 @@
 
 import UIKit
 
-protocol ContactListView: class {
+protocol ContactListViewControllerEventHandler {
+  func viewLoaded()
 }
 
-class ContactListViewController: UIViewController, ContactListView {
+class ContactListViewController: UIViewController,
+    ContactListPresenterView {
   
-  var presenter: ContactListPresenter!
+  var eventHandler: ContactListViewControllerEventHandler!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    presenter.viewLoaded()
+    eventHandler.viewLoaded()
   }
 
 }
